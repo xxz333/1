@@ -1,0 +1,43 @@
+#include<iostream>
+#include<sys/time.h>
+using namespace std;
+struct timeval val;
+struct timeval newval;
+
+int main()
+{
+        int n;
+        cin>>n;
+        int *sum=new int[n];
+        int **b=new int* [n];
+        for(int k=0;k<n;k++)
+                b[k]=new int[n];
+        int *a=new int[n];
+        for(int i=0;i<n;i++)
+                a[i]=2*i;
+        for(int i=0;i<n;i++)
+        {
+                for(int j=0;j<n;j++)
+                {
+                        b[i][j]=i+j;
+                }
+        }
+        int i,j;
+        int ret=gettimeofday(&val,NULL);
+        for(int k=0;k<=1000;k++)
+        {
+                for(i=0;i<n;i++)
+                        sum[i]=0.0;
+                for(j=0;j<n;j++)
+                        for(i=0;i<n;i++)
+                                sum[i]+=b[j][i]*a[j];
+        }
+        ret=gettimeofday(&newval,NULL);
+        cout<<"diff:sec---"<<newval.tv_sec-val.tv_sec<<" microsec---"<<newval.tv_usec
+                -val.tv_usec<<endl;
+        delete sum;
+        delete a;
+        for(int k=0;k<n;k++)
+                delete b[k];
+        delete []b;
+}

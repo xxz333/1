@@ -1,0 +1,25 @@
+#include<sys/time.h>
+#include<iostream>
+using namespace std;
+struct timeval val;
+struct timeval newval;
+int main()
+{
+        int n,m;cin>>n;
+        int *a=new int[n];
+        for(int i=0;i<n;i++)
+                a[i]=2*i;
+        int i;
+        int ret=gettimeofday(&val,NULL);
+        for(int k=0;k<1000000;k++)
+        {
+                for(m=n;m>1;m/=2)
+                        for(i=0;i<m/2;i++)
+                                a[i]=a[i*2]+a[2*i+1]
+        }
+         ret=gettimeofday(&newval,NULL);
+
+         cout<<"diff:sec---"<<newval.tv_sec-val.tv_sec<<" microsec---"<<newval.tv_usec
+                                             -val.tv_usec<<endl;
+         delete a;
+}
